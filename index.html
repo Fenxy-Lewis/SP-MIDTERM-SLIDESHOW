@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="km">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>មគ្គុទ្ទេសក៍ការថតរូប</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --card: #ffffff;
+      --accent: #c8830a;
+      --accent2: #c0392b;
+      --accent3: #2980b9;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: rgba(180, 140, 60, 0.25);
+      --glow: rgba(200, 131, 10, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans Khmer', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.2;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(200, 131, 10, 0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(192, 57, 43, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(41, 128, 185, 0.06) 0%, transparent 60%);
+    }
+
+    .hero-lens {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 166, 35, 0.1);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulseRing 4s ease-in-out infinite;
+    }
+
+    .hero-lens::before {
+      content: '';
+      position: absolute;
+      inset: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 166, 35, 0.08);
+    }
+
+    .hero-lens::after {
+      content: '';
+      position: absolute;
+      inset: 60px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 166, 35, 0.05);
+    }
+
+    @keyframes pulseRing {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 1;
+      }
+    }
+
+    .hero-eyelet {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 166, 35, 0.3) 0%, rgba(245, 166, 35, 0.05) 60%, transparent 100%);
+      border: 2px solid rgba(245, 166, 35, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 32px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 8vw, 80px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #7a4a00 0%, #c8830a 50%, #a06010 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-family: 'Noto Sans Khmer', sans-serif;
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .hero-desc {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+
+    .chapter-count {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .count-item {
+      text-align: center;
+    }
+
+    .count-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--accent);
+      display: block;
+    }
+
+    .count-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245, 244, 240, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 64%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      background: var(--glow);
+    }
+
+    /* MAIN */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 100px;
+    }
+
+    /* CHAPTER SECTION */
+    .chapter {
+      margin-bottom: 80px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .chapter-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chapter-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--accent);
+      /* opacity: 0.25; */
+      line-height: 1;
+      min-width: 70px;
+    }
+
+    .chapter-meta {
+      flex: 1;
+    }
+
+    .chapter-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(245, 166, 35, 0.1);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+
+    .chapter-title {
+      font-family: 'Noto Sans Khmer', sans-serif;
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .chapter-slides-count {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* SLIDES GRID */
+    .slides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .slide-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    }
+
+    .slide-card:hover {
+      border-color: rgba(200, 131, 10, 0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(200, 131, 10, 0.15);
+    }
+
+    .slide-header {
+      padding: 20px 20px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .slide-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .slide-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 2px;
+    }
+
+    .slide-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .slide-body {
+      padding: 16px 20px 20px;
+    }
+
+    .slide-body p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .slide-tips {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .slide-tips li {
+      font-size: 12px;
+      color: var(--muted);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .slide-tips li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* IMAGE GALLERY */
+    .image-zone {
+      margin-top: 28px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      background: rgba(245, 166, 35, 0.02);
+    }
+
+    .image-zone-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .image-zone-sub {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .img-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .img-gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .img-gallery img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .img-row {
+      display: grid;
+      gap: 16px;
+    }
+
+    .img-row-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .img-row-3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .img-row img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .img-row img:hover {
+      transform: scale(1.015);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .img-note {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 8px;
+      opacity: 0.7;
+    }
+
+    /* COLOR ACCENTS per chapter */
+    .ch-1 {
+      --ca: #f5a623;
+    }
+
+    .ch-2 {
+      --ca: #e05c5c;
+    }
+
+    .ch-3 {
+      --ca: #5c9ee0;
+    }
+
+    .ch-4 {
+      --ca: #f5a623;
+    }
+
+    .ch-5 {
+      --ca: #7ec8a0;
+    }
+
+    .ch-6 {
+      --ca: #c45ce0;
+    }
+
+    .ch-7 {
+      --ca: #5ce0d8;
+    }
+
+    .ch-8 {
+      --ca: #e0a85c;
+    }
+
+    .ch-9 {
+      --ca: #5c9ee0;
+    }
+
+    .ch-10 {
+      --ca: #f5a623;
+    }
+
+    .ch-11 {
+      --ca: #7ec8a0;
+    }
+
+    .chapter .slide-icon {
+      background: color-mix(in srgb, var(--ca) 15%, transparent);
+    }
+
+    .chapter .chapter-tag {
+      color: var(--ca);
+      background: color-mix(in srgb, var(--ca) 10%, transparent);
+      border-color: color-mix(in srgb, var(--ca) 25%, transparent);
+    }
+
+    .chapter .chapter-num {
+      color: var(--ca);
+    }
+
+    .chapter .slide-tips li::before {
+      color: var(--ca);
+    }
+
+    .chapter .image-zone {
+      border-color: color-mix(in srgb, var(--ca) 25%, transparent);
+      background: color-mix(in srgb, var(--ca) 3%, transparent);
+    }
+
+    .chapter .image-zone:hover {
+      border-color: color-mix(in srgb, var(--ca) 45%, transparent);
+    }
+
+    .chapter .image-zone-title {
+      color: var(--ca);
+    }
+
+    .chapter .image-slot {
+      border-color: color-mix(in srgb, var(--ca) 18%, transparent);
+    }
+
+    .chapter .slide-card:hover {
+      border-color: color-mix(in srgb, var(--ca) 35%, transparent);
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(180, 140, 60, 0.3), transparent);
+      margin: 60px 0;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* badge tip */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin: 2px;
+      font-weight: 500;
+    }
+
+    .badge-good {
+      background: rgba(126, 200, 160, 0.12);
+      color: #7ec8a0;
+      border: 1px solid rgba(126, 200, 160, 0.2);
+    }
+
+    .badge-bad {
+      background: rgba(224, 92, 92, 0.12);
+      color: #e05c5c;
+      border: 1px solid rgba(224, 92, 92, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      .slides-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .image-slots {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .chapter-header {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .chapter-num {
+        font-size: 36px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lens"></div>
+    <div class="hero-eyelet">📷</div>
+    <div class="hero-label">មគ្គុទ្ទេសក៍ · Photography Guide</div>
+    <h1 class="hero-title">សិល្បៈនៃ<br>ការថតរូប</h1>
+    <p class="hero-sub">The Art of Photography</p>
+    <p class="hero-desc">មគ្គុទ្ទេសក៍ពេញលេញសម្រាប់ការរៀនថតរូប ចាប់ពី Position រហូតដល់ White Balance និងការគ្រប់គ្រងពន្លឺ
+    </p>
+    <div class="chapter-count">
+      <div class="count-item"><span class="count-num">11</span><span class="count-label">មេរៀន</span></div>
+      <div class="count-item"><span class="count-num">55</span><span class="count-label">Slides</span></div>
+      <div class="count-item"><span class="count-num">∞</span><span class="count-label">ចំណេះដឹង</span></div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">📷 ក្រុមលក់ទឹកត្រឡាច</a>
+      <div class="nav-links">
+        <a href="#ch1">Position</a>
+        <a href="#ch2">ផលិតផល</a>
+        <a href="#ch3">Action</a>
+        <a href="#ch4">Sunrise</a>
+        <a href="#ch5">Gridline</a>
+        <a href="#ch6">Background</a>
+        <a href="#ch7">Lens</a>
+        <a href="#ch8">ISO</a>
+        <a href="#ch9">Shutter</a>
+        <a href="#ch10">WB</a>
+        <a href="#ch11">ពន្លឺ</a>
+      </div>
+      <div style="font-size: 13px; font-weight: 600; color: green; white-space: nowrap;">និស្សិតវិទ្យាស្ថានស៊ីតិក</div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ========== CHAPTER 1 ========== -->
+    <section class="chapter ch-1" id="ch1">
+      <div class="chapter-header">
+        <div class="chapter-num">01</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">Posing · Composition</span>
+          <h2 class="chapter-title">ការថតរូប Position</h2>
+          <p class="chapter-slides-count">5 Slides · ទីតាំង និងការដាក់자세ក្នុងការថតរូប</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🧍</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">Standing Position</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ការឈររបស់ model ត្រូវវាងខ្លួន 45° ទៅកាន់កាមេរ៉ា ដើម្បីបង្ហាញរាងកាយដ៏ស្រស់ស្អាត
+              និងធ្វើឱ្យរូបភាពមើលទូលំទូលាយ។</p>
+            <ul class="slide-tips">
+              <li>ដាក់ weight លើជើងម្ខាង ឱ្យស្ពាយ relax</li>
+              <li>ដៃត្រូវ natural មិនឱ្យស្ទះខ្លួន</li>
+              <li>ចង្កេះត្រូវបត់ស្ទើរ (slight curve)</li>
+              <li>ខ្នងត្រង់ ក លើក ស្ញែង</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🪑</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">Sitting Position</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ការអង្គុយ​ must ជ្រើសរើស angle ត្រឹមត្រូវ ត្រូវប្រយ័ត្នការ distort ជើង ឬ ដៃ ដែលធ្វើឱ្យរូបភាពមើល ugly។</p>
+            <ul class="slide-tips">
+              <li>គ្មានពេលណាត្រូវ flat ជើងទៅរ flat</li>
+              <li>ជើងផ្ចិតបន្ដិច ឱ្យ shape ល្អ</li>
+              <li>ខ្នងដូចធ្វើ S-curve ស្ទើរ</li>
+              <li>ដៃដាក់ lightly លើ knee</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🤸</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">Dynamic Pose</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ការ pose ចលនា (dynamic) ធ្វើឱ្យរូបភាព alive ជាង static ។ ប្រើ movement ខ្លះ ដូចជា turning, walking ។</p>
+            <ul class="slide-tips">
+              <li>ចង្អុលដៃ ឬ gesture ប្រើ prop</li>
+              <li>ច្រឡំ angle ក្បាល ណែ Forward</li>
+              <li>ដើរ ឬ ក្លែង motion ស្ងួត</li>
+              <li>ប្រើ leading line ជា path</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">😊</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">ក្បាល និង Expression</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ការ tilt ក្បាលបន្ដិច ជារឿយៗធ្វើឱ្យ portrait ស្រស់ ។ Expression ស្រាក​ ឬ smize (smile with eyes) ។</p>
+            <ul class="slide-tips">
+              <li>Tilt ក្បាល 5-15° ទៅ shoulder</li>
+              <li>Chin forward & down ដើម្បី eliminate double chin</li>
+              <li>Eyes soft, relaxed, focused</li>
+              <li>ញញឹម​ genuine មិន forced</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">📐</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Camera Angle</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Camera angle ប៉ះពាល់ position ច្រើន ។ Shoot ពីខ្ពស់ (High angle) ធ្វើឱ្យ model ស្ទើរ ។ Shoot ពីទាប (Low
+              angle) ធ្វើឱ្យ tall។</p>
+            <ul class="slide-tips">
+              <li>High angle → face slim, eyes big</li>
+              <li>Eye-level → natural & honest</li>
+              <li>Low angle → legs long, powerful</li>
+              <li>ជ្រើស angle ទៅ​ target ចង់បាន</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព Position</div>
+        <div class="image-zone-sub">Standing · Sitting · Dynamic · Expression · Angle — Folder: POSITION</div>
+        <div class="img-gallery">
+          <img src="POSITION/IMG_20260421_113526_765.jpg" alt="Position 1">
+          <img src="POSITION/IMG_20260421_113643_181.jpg" alt="Position 2">
+          <div class="img-row img-row-3">
+            <img src="POSITION/IMG_20260421_113716_361.jpg" alt="Position 3">
+            <img src="POSITION/IMG_20260421_113838_111.jpg" alt="Position 4">
+            <img src="POSITION/IMG_20260421_113853_391.jpg" alt="Position 5">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 2 ========== -->
+    <section class="chapter ch-2" id="ch2">
+      <div class="chapter-header">
+        <div class="chapter-num">02</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">Product · Object Photography</span>
+          <h2 class="chapter-title">ការថតរូបផលិតផល និងសម្ភារ​ផ្សេងៗ</h2>
+          <p class="chapter-slides-count">5 Slides · Product & Still Life Photography</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">💡</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">Lighting Setup</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ពន្លឺសម្រាប់ product photography ជាធម្មតាប្រើ soft box ឬ natural light ពីប្ក window ។ Shadow control ជា
+              key។</p>
+            <ul class="slide-tips">
+              <li>ប្រើ white reflector ដើម្បី fill shadow</li>
+              <li>Light ពីខាងឆ្វេងឬស្ដាំ 45° (Rembrandt)</li>
+              <li>Backlit → rim light ស្រស់</li>
+              <li>Diffuse light ដើម្បី soft shadow</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🎨</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">Background & Surface</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Background ត្រូវ complement product ។ ប្រើ clean white, black, gradient, ឬ textured surface ដែល match ។
+            </p>
+            <ul class="slide-tips">
+              <li>White BG → clean, e-commerce</li>
+              <li>Textured BG → premium, lifestyle</li>
+              <li>Tone-on-tone → sophisticated</li>
+              <li>Props ត្រូវ support product</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🔍</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">Macro & Detail Shot</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Macro photography ថតលម្អិត texture, stitching, ឬ details ជាយថាហេតុ ។ ត្រូវប្រើ tripod ដើម្បី sharp។</p>
+            <ul class="slide-tips">
+              <li>ប្រើ macro lens ឬ extension tube</li>
+              <li>f/8-f/11 ដើម្បី detail sharp</li>
+              <li>Remote shutter ដើម្បី avoid shake</li>
+              <li>Light ជាក់ ដើម្បីឃើញ texture</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">📐</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">Composition Rules</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Rule of Thirds, Flat Lay, Hero Shot ជា composition style ដ៏ popular សម្រាប់ product ។ ជ្រើស​ style ទៅ
+              brand។</p>
+            <ul class="slide-tips">
+              <li>Hero Shot → product ធំ center</li>
+              <li>Flat Lay → top-down overhead</li>
+              <li>45° angle → show depth</li>
+              <li>Negative space → luxury feel</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">✨</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Post-Processing</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Product photo ត្រូវ retouch ។ ដកflaw, adjust color, sharpen edges ។ ប្រើ Lightroom ឬ Photoshop ។</p>
+            <ul class="slide-tips">
+              <li>Background removal ដាច់ស្អាត</li>
+              <li>Color grading ទៅ brand identity</li>
+              <li>Sharpen product, blur BG ស្ទើរ</li>
+              <li>ដក dust, scratch ដោយ clone stamp</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព Product Photography</div>
+        <div class="image-zone-sub">Lighting · Background · Macro · Composition · Edited Result — Folder: PRODUCT</div>
+        <div class="img-gallery">
+          <div class="img-row img-row-2">
+            <img src="PRODUCT/20260426_170029.jpg" alt="Product 1">
+            <img src="PRODUCT/20260426_170419.jpg" alt="Product 2">
+          </div>
+          <div class="img-row img-row-2">
+            <img src="PRODUCT/20260426_170456.jpg" alt="Product 3">
+            <img src="PRODUCT/20260426_170822.jpg" alt="Product 4">
+          </div>
+          <img src="PRODUCT/20260426_171026.jpg" alt="Product 5">
+          <img src="PRODUCT/20260426_171257.jpg" alt="Product 6">
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 3 ========== -->
+    <section class="chapter ch-3" id="ch3">
+      <div class="chapter-header">
+        <div class="chapter-num">03</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">Action · Sports · Motion</span>
+          <h2 class="chapter-title">ការថតសកម្មភាព (Action Photography)</h2>
+          <p class="chapter-slides-count">5 Slides · ចាប់ movement ក្នុង split second</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">⚡</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">Fast Shutter Speed</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ដើម្បី freeze motion ត្រូវ shutter speed លឿន ។ ជាប់ minimum 1/500s ឡើងទៅ ។ ត្រីឡើងលំហ → 1/2000s ។</p>
+            <ul class="slide-tips">
+              <li>1/500s → ជើងមនុស្ស walking/running</li>
+              <li>1/1000s → sports, cycling</li>
+              <li>1/2000s+ → birds, splash, ball</li>
+              <li>Sport mode (AI Servo) ជួយ track</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🎯</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">Continuous AF</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ប្រើ Continuous Autofocus (AI Servo / AF-C) ដើម្បី track subject ដែលចល​ ។ Burst mode ជួយ catch perfect
+              moment ។</p>
+            <ul class="slide-tips">
+              <li>AI Servo (Canon) / AF-C (Nikon/Sony)</li>
+              <li>Burst mode → 10fps+ ប្រសើរ</li>
+              <li>Zone AF ឬ Tracking AF point</li>
+              <li>ចាំ anticipate action កុំ​ wait</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌊</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">Panning Technique</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Panning = follow subject ដោយ pan camera ។ Subject sharp ប៉ុន្ដែ background blurred → ប្រឆាំងនឹង freeze
+              freeze ។</p>
+            <ul class="slide-tips">
+              <li>ប្រើ 1/30 – 1/125s panning</li>
+              <li>Rotate ពី waist, smooth and steady</li>
+              <li>ចាប់ subject ចុះ lock ហើយ follow</li>
+              <li>Practice បាន result ល្អ</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">📍</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">ទីកន្លែង & Angle</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Position ខ្លួន ដូចការ​ anticipate ចំណុចដ៏ល្អ ។ Action photography ត្រូវ pre-focus ចំ spot ដែល subject នឹង
+              pass ។</p>
+            <ul class="slide-tips">
+              <li>Pre-focus ចំ spot, ហើយ wait</li>
+              <li>Low angle → powerful, dramatic</li>
+              <li>Head-on angle → impact & tension</li>
+              <li>Side angle → speed & motion visible</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🔆</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Exposure & ISO</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Action ភាគច្រើន តម្រូវ ISO ខ្ពស់ ដោយសារ fast shutter = less light ។ ISO 800-3200 ជាទូទៅ ។ ប្រើ Auto ISO ។
+            </p>
+            <ul class="slide-tips">
+              <li>Auto ISO max 6400 ឬ ខ្ពស់​ជាង</li>
+              <li>Aperture Priority (Av/A) mode</li>
+              <li>Keep aperture wide f/2.8 – f/4</li>
+              <li>Shoot RAW ដើម្បី recover noise</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព Action Photography</div>
+        <div class="image-zone-sub">Freeze · Burst · Panning · Pre-focus · High ISO Result — Folder: Action</div>
+        <div class="img-gallery">
+          <div class="img-row img-row-2">
+            <img src="Action/IMG_9673.JPG" alt="Action 1">
+            <img src="Action/IMG_9710.JPG" alt="Action 2">
+          </div>
+          <img src="Action/IMG_9746.JPG" alt="Action 3">
+          <div class="img-row img-row-2">
+
+            <img src="Action/photo_2026-04-26_21-27-24.jpg" alt="Action 4">
+            <img src="Action/IMG_20260421_113728_945.jpg" alt="Action 4">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 4 ========== -->
+    <section class="chapter ch-4" id="ch4">
+      <div class="chapter-header">
+        <div class="chapter-num">04</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">Sunrise · Golden Hour · Landscape</span>
+          <h2 class="chapter-title">ការថតរូប Sunrise</h2>
+          <p class="chapter-slides-count">5 Slides · ព្រឹកព្រលឹម & Golden Hour</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌅</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">Golden Hour Timing</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Golden hour ជា 30-60 min បន្ទាប់ sunrise ។ ពន្លឺ warm, soft, low angle ។ Blue hour ជា 20 min មុន sunrise
+              ។</p>
+            <ul class="slide-tips">
+              <li>ចូល spot 30 min មុន sunrise</li>
+              <li>Blue hour → moody, cool tones</li>
+              <li>Golden hour → warm, flattering</li>
+              <li>App "PhotoPills" ជួយ predict</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">⚙️</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">Camera Settings</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Sunrise photography ត្រូវ expose correctly ។ Matrix/Evaluative metering + Exposure Compensation ។ RAW ជា
+              must ។</p>
+            <ul class="slide-tips">
+              <li>ISO 100-400 ចម្ការ​ noise</li>
+              <li>f/8-f/16 ដើម្បី landscape sharp</li>
+              <li>Shutter → adjust to sky exposure</li>
+              <li>Shoot RAW + JPG ដូចគ្នា</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🔭</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">Filters & Equipment</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>GND (Graduated ND) filter ជួយ balance sky vs foreground ។ Tripod ជា essential ។ Remote shutter ។</p>
+            <ul class="slide-tips">
+              <li>GND 3-stop → balance exposure</li>
+              <li>Polarizer → cut glare, boost color</li>
+              <li>Sturdy tripod on uneven ground</li>
+              <li>Mirror lock-up ឬ electronic shutter</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🗺️</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">Composition ល្អ</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Foreground interest ជា key ។ Reflect water, silhouette, leading line ។ Rule of Thirds → sky/ground 2/3
+              ratio ។</p>
+            <ul class="slide-tips">
+              <li>Foreground rock/plant → depth</li>
+              <li>Silhouette subject ទៅ sky</li>
+              <li>Horizon straight (ប្រើ gridline)</li>
+              <li>Reflection ក្នុង water → mirror</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🎨</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Post-Processing Sunrise</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Lightroom → boost warm tones, recover highlights, lift shadows ។ Graduated filter ចំ sky ។ Dehaze ។</p>
+            <ul class="slide-tips">
+              <li>Highlights -70, Shadows +50</li>
+              <li>HSL → boost Orange/Yellow</li>
+              <li>Graduated filter darken sky</li>
+              <li>Clarity +20 ដើម្បី depth</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព Sunrise / SS</div>
+        <div class="image-zone-sub">Blue Hour · Golden Hour · Silhouette · Reflection — Folder: SS</div>
+        <div class="img-gallery">
+          <img src="SS/IMG_0347 (3).JPG" alt="SS 1">
+          <img src="SS/IMG_0380 (2).JPG" alt="SS 2">
+          <img src="SS/IMG_0385 (2).JPG" alt="SS 3">
+          <div class="img-row img-row-2">
+            <img src="SS/IMG_0408 (2).JPG" alt="SS 4">
+            <img src="SS/IMG_0424.JPG" alt="SS 5">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 5 ========== -->
+    <section class="chapter ch-5" id="ch5">
+      <div class="chapter-header">
+        <div class="chapter-num">05</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">Gridline · Rule of Thirds · Architecture</span>
+          <h2 class="chapter-title">ការថតរូបដោយប្រើ Gridline (View Building)</h2>
+          <p class="chapter-slides-count">5 Slides · ប្រើ Grid ដើម្បី Composition ល្អ</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🔲</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">Rule of Thirds Grid</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Grid 3x3 បែងចែក frame ។ ដាក់ subject ចំ intersection point (power point) ។ Horizon ដាក់ line ទី 1 ឬ ទី 2
+              ។</p>
+            <ul class="slide-tips">
+              <li>Enable grid ក្នុង camera settings</li>
+              <li>Eyes ចំ upper intersection</li>
+              <li>Horizon ចំ ⅓ ឬ ⅔ mark</li>
+              <li>Leading subject ទៅ center grid</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🏛️</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">Architecture Gridline</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Building photography → grid ជួយ align vertical & horizontal lines ។ Keystone distortion (tilting camera)
+              ជៀស​ ។</p>
+            <ul class="slide-tips">
+              <li>ប្រើ tilt-shift lens ឬ fix ក្នុង LR</li>
+              <li>Level horizon ដោយ bubble level</li>
+              <li>Vertical lines parallel ទៅ frame edge</li>
+              <li>2-point perspective ស្រស់</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">➕</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">Center Composition</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Center composition ល្អ​ ចំ subject symmetric ។ ផ្ទះ, ទ្វារ, tunnel, reflection ប្រើ center = powerful ។
+            </p>
+            <ul class="slide-tips">
+              <li>Symmetric subject → center ល្អ</li>
+              <li>Tunnel/arch → center draw eye</li>
+              <li>Reflection → perfect center</li>
+              <li>Grid ជួយ verify center</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">↗️</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">Leading Lines ក្នុង Building</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Building lines (ជញ្ជាំង, ជណ្ដើរ, ផ្លូវ) ប្រើ leading lines ។ Grid ជួយ identify ។ Eye travel ទៅ subject ។
+            </p>
+            <ul class="slide-tips">
+              <li>Staircase, corridor, road → line</li>
+              <li>Lines converge → vanishing point</li>
+              <li>Grid align lines to frame edges</li>
+              <li>ផ្ចិត​ ⅓ intersect ជាទូទៅ</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🔀</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Square & Golden Ratio Grid</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Golden Ratio (Phi Grid) ជ្រើស​ល្អ ប៉ុន្ដែ Rule of Thirds ងាយ ។ Square grid ប្រើ Instagram format ។</p>
+            <ul class="slide-tips">
+              <li>Phi Grid → organic, natural feel</li>
+              <li>Square 1:1 → Instagram ready</li>
+              <li>4:5 → portrait-optimized social</li>
+              <li>Crop ក្នុង post ដូច grid ណ</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព Gridline</div>
+        <div class="image-zone-sub">Rule of Thirds · Architecture · Center · Leading Lines — Folder: GRIDLINE</div>
+        <div class="img-gallery">
+          <img src="GRIDLINE/20260315_064056.jpg" alt="Gridline 1">
+          <img src="GRIDLINE/20260416_140146.jpg" alt="Gridline 2">
+          <img src="GRIDLINE/20260416_140550.jpg" alt="Gridline 3">
+          <div class="img-row img-row-2">
+            <img src="GRIDLINE/20260416_140618.jpg" alt="Gridline 4">
+            <img src="GRIDLINE/20260416_140851 (1).jpg" alt="Gridline 5">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 6 ========== -->
+    <section class="chapter ch-6" id="ch6">
+      <div class="chapter-header">
+        <div class="chapter-num">06</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">Background · ល្អ vs មិនល្អ</span>
+          <h2 class="chapter-title">ការជ្រើសរើស Background (ល្អ និងមិនល្អ)</h2>
+          <p class="chapter-slides-count">5 Slides · Background ប៉ះពាល់ message ទាំងអស់</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">✅</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">Background ល្អ</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Background ល្អ = simple, complement subject, ឥតរំខាន ។ Subject ទើបបង្ហាញ ។ Color harmony ។</p>
+            <div style="margin-top:8px">
+              <span class="badge badge-good">✓ Simple & Clean</span>
+              <span class="badge badge-good">✓ Complementary Color</span>
+              <span class="badge badge-good">✓ Blurred (Bokeh)</span>
+              <span class="badge badge-good">✓ Contextual (Nature)</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">❌</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">Background មិនល្អ</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Background ដែល distract = lines "growing" out of head, cluttered, bright spot, ឬ color clash ។ Subject
+              បាត់​ ។</p>
+            <div style="margin-top:8px">
+              <span class="badge badge-bad">✗ ដើមមែកចេញពីក្បាល</span>
+              <span class="badge badge-bad">✗ Cluttered background</span>
+              <span class="badge badge-bad">✗ Bright spot behind</span>
+              <span class="badge badge-bad">✗ Color clash</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌀</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">Bokeh Background</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Bokeh (blur background) ជា technique ដ៏ popular ។ ប្រើ wide aperture (low f-number), ្ ។ Subject ហើរ ពី
+              BG ។</p>
+            <ul class="slide-tips">
+              <li>f/1.4 – f/2.8 → beautiful bokeh</li>
+              <li>Subject ឆ្ងាយ ពី BG ។</li>
+              <li>Long focal length (85mm+) = more bokeh</li>
+              <li>BG ​ lights → circle bokeh balls</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🎭</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">Color & Contrast</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>BG color ត្រូវ contrast subject ។ Dark subject → light BG ។ Light subject → dark BG ។ Color wheel →
+              complementary ។</p>
+            <ul class="slide-tips">
+              <li>Complementary colors → pop</li>
+              <li>Analogous → harmony, soft</li>
+              <li>Tone match → elegant</li>
+              <li>B&W subject + color BG → drama</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌿</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Natural Background</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Nature (leaves, water, sky, wall texture) ជា BG ដ៏ versatile ។ ជ្រើស season, light, eo color ។ ហ្ន common
+              ប៉ុន្ដែ effective ។</p>
+            <ul class="slide-tips">
+              <li>Green leaves → fresh, natural</li>
+              <li>Brick wall → urban, rustic</li>
+              <li>Water/sky → open, free</li>
+              <li>ប្រកបពណ៌ BG ស្ពឹក foreground</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព Background (ល្អ vs មិនល្អ)</div>
+        <div class="image-zone-sub">Good BG · Bokeh · Color Contrast · Natural — Folder: BG_GOOD</div>
+        <div class="img-gallery">
+          <img src="BG_GOOD/IMG_20260421_113915_396.jpg" alt="BG Good 2">
+          <img src="BG_GOOD/20260319_172706.jpg" alt="BG Good 1">
+          <img src="BG_GOOD/IMG_20260421_113803_165.jpg" alt="BG Good 1">
+          <div class="img-row img-row-2">
+            <img src="BG_GOOD/IMG_20260421_113942_609.jpg" alt="BG Good 3">
+            <img src="BG_GOOD/IMG_20260421_113948_067.jpg" alt="BG Good 4">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 7 ========== -->
+    <section class="chapter ch-7" id="ch7">
+      <div class="chapter-header">
+        <div class="chapter-num">07</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">Lens · Wide Angle · Telephoto</span>
+          <h2 class="chapter-title">ការប្រើប្រាស់ Lens (Wide Angle & Telephoto)</h2>
+          <p class="chapter-slides-count">5 Slides · Lens ខុសគ្នា → Story ខុសគ្នា</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🔭</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">Wide Angle Lens</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Wide angle (14-35mm) ចាប់ scene ធំ ។ Foreground ចូលច្រើន, depth exaggerated ។ Architecture, landscape,
+              interior ។</p>
+            <ul class="slide-tips">
+              <li>14mm – 24mm → ultra wide, dramatic</li>
+              <li>35mm → street, natural FOV</li>
+              <li>Distortion ចំ edge (ក្បាល distort)</li>
+              <li>Include foreground → immersive</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🎯</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">Telephoto Lens</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Telephoto (70-400mm+) ទាក់ subject ពីឆ្ងាយ ។ Background compress, bokeh beautiful ។ Wildlife, sport,
+              portrait ។</p>
+            <ul class="slide-tips">
+              <li>70-200mm → portrait, event ideal</li>
+              <li>300-600mm → wildlife, bird</li>
+              <li>Background compression → flatten look</li>
+              <li>Image stabilization (IS/VR) ជា must</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">📸</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">50mm Standard Lens</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>50mm ≈ human eye FOV ។ Natural perspective, versatile, low-light capable ។ ល្អ street, portrait, everyday
+              ។</p>
+            <ul class="slide-tips">
+              <li>f/1.8 affordable, sharp, fast</li>
+              <li>Most natural looking photo</li>
+              <li>Great for street & documentary</li>
+              <li>Beginner "nifty fifty" recommended</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🔍</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">Lens Distortion Effects</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Wide angle distort (barrel distortion) ។ Telephoto compress (telephoto compression) ។ ទាំងពីរ ប្រើ
+              creative ។</p>
+            <ul class="slide-tips">
+              <li>Wide → exaggerate near/far distance</li>
+              <li>Telephoto → stack layers, compress</li>
+              <li>Fisheye (8mm) → circular distort</li>
+              <li>Fix distortion ក្នុង LR Lens Correction</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">💡</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">ជ្រើស Lens ត្រូវ</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ជ្រើស lens ទៅ use case ។ Portrait → 85mm ។ Landscape → 16-35mm ។ Street → 35mm ។ Wildlife → 300mm+ ។</p>
+            <ul class="slide-tips">
+              <li>Portrait → 85mm f/1.4 (flattering)</li>
+              <li>Landscape → 16-35mm wide</li>
+              <li>Street → 35mm versatile</li>
+              <li>Wildlife → 300-600mm telephoto</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព Lens</div>
+        <div class="image-zone-sub">Wide Angle · Telephoto · 50mm · Distortion Compare — Folder: Lens</div>
+        <div class="img-gallery">
+          <img src="Lens/20260319_171220.jpg" alt="Lens 1">
+          <img src="Lens/IMG_0449.JPG" alt="Lens 2">
+          <img src="Lens/IMG_1472.jpg" alt="Lens 3">
+          <img src="Lens/IMG_1476.jpg" alt="Lens 4">
+          <div class="img-row img-row-2">
+            <img src="Lens/IMG_1478.jpg" alt="Lens 5">
+            <img src="Lens/IMG_8008 (2).JPG" alt="Lens 6">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 8 ========== -->
+    <section class="chapter ch-8" id="ch8">
+      <div class="chapter-header">
+        <div class="chapter-num">08</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">ISO · Sensitivity · Noise</span>
+          <h2 class="chapter-title">ការប្រើប្រាស់ ISO</h2>
+          <p class="chapter-slides-count">5 Slides · ISO ប៉ះពាល់ Brightness & Noise</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌟</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">ISO ជាអ្វី?</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ISO = sensitivity ភ្នែករបស់ sensor ចំពោះ​ពន្លឺ ។ ISO ខ្ពស់ = brighter ប៉ុន្ដែ noise ច្រើន ។ ISO ទាប =
+              clean ។</p>
+            <ul class="slide-tips">
+              <li>ISO 100 → cleanest, base ISO</li>
+              <li>ISO 800-1600 → acceptable noise</li>
+              <li>ISO 6400+ → visible grain/noise</li>
+              <li>RAW file → recover noise better</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">☀️</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">ISO ក្នុង Daylight</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ថ្ងៃ ប្រើ ISO 100-200 ។ ពន្លឺ​ abundant → ISO ទាប គ្រប់គ្រាន់ ។ Avoid high ISO ១ ចៀស grain ។</p>
+            <ul class="slide-tips">
+              <li>Sunny day → ISO 100</li>
+              <li>Overcast → ISO 200-400</li>
+              <li>Open shade → ISO 400-800</li>
+              <li>ប្រើ ND filter ចំ bright scene</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌙</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">ISO ក្នុង Low Light</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>ពន្លឺ​ ខ្យល់ (indoor, night) → ISO ត្រូវ​ខ្ពស់ ។ Balance noise vs blur ។ Fast lens f/1.8 ជួយ ។</p>
+            <ul class="slide-tips">
+              <li>Indoor → ISO 800-3200</li>
+              <li>Night street → ISO 1600-6400</li>
+              <li>Astro (milky way) → ISO 3200-12800</li>
+              <li>Fast lens save ISO 1-2 stop</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🎚️</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">Auto ISO</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Auto ISO ជ្រើស ISO ស្វ័យ ។ Set max ISO, min shutter speed ។ Useful event, run-n-gun shooting ។</p>
+            <ul class="slide-tips">
+              <li>Set Max ISO → 3200 ឬ 6400</li>
+              <li>Set Minimum SS → 1/focal length</li>
+              <li>Camera auto adjust properly</li>
+              <li>ល្អ event, wedding, street</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🔊</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Noise Reduction</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Denoise ក្នុង Lightroom AI, Topaz DeNoise ។ Shoot RAW → more detail ។ Stack photos → cleaner ។</p>
+            <ul class="slide-tips">
+              <li>LR AI Denoise → 1-click clean</li>
+              <li>Topaz Photo AI → best result</li>
+              <li>In-camera NR → bake in JPG</li>
+              <li>Expose to the right (ETTR) trick</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព ISO</div>
+        <div class="image-zone-sub">ISO 100 · ISO 800 · ISO 3200 · ISO 6400 · Noise Compare — Folder: ISO</div>
+        <div class="img-gallery">
+          <img src="ISO/IMG_7969 (2).JPG" alt="ISO 1">
+          <img src="ISO/IMG_7974 (2).JPG" alt="ISO 4">
+          <div class="img-row img-row-2">
+            <img src="ISO/IMG_7970 (2).JPG" alt="ISO 2">
+            <img src="ISO/IMG_7972 (2).JPG" alt="ISO 3">
+          </div>
+          <div class="img-row img-row-2">
+            <img src="ISO/IMG_7975 (2).JPG" alt="ISO 5">
+            <img src="ISO/IMG_8003.JPG" alt="ISO 6">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 9 ========== -->
+    <section class="chapter ch-9" id="ch9">
+      <div class="chapter-header">
+        <div class="chapter-num">09</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">Shutter Speed · Motion · Exposure</span>
+          <h2 class="chapter-title">ការប្រើប្រាស់ Shutter Speed</h2>
+          <p class="chapter-slides-count">5 Slides · Shutter = Time ការ​expose sensor</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">⚡</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">Fast Shutter (Freeze)</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Shutter លឿន (1/500s+) freeze motion ។ ប្រើ sport, action, bird, splash water, freeze expressions ។</p>
+            <ul class="slide-tips">
+              <li>1/500s → ចល​ ធម្មតា</li>
+              <li>1/1000s → sport, cycling</li>
+              <li>1/4000s → bird in flight, splash</li>
+              <li>Trade-off: ត្រូវ higher ISO/aperture</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌊</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">Slow Shutter (Motion Blur)</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Shutter យឺត (1/30s ឬ ទាប) blur motion ។ ទឹក silk, traffic light trails, star trails ។ Tripod ជា must ។
+            </p>
+            <ul class="slide-tips">
+              <li>1/8 – 1/2s → silky waterfall</li>
+              <li>1-10s → light trails, traffic</li>
+              <li>15-30s → milky way, astro</li>
+              <li>Tripod + remote = no shake</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">📷</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">Handheld Safe Speed</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Rule: Minimum SS = 1/focal length ។ 50mm → min 1/50s ។ 200mm → min 1/200s ។ IS/VR ជួយ 2-5 stop ។</p>
+            <ul class="slide-tips">
+              <li>50mm → 1/50s minimum</li>
+              <li>200mm → 1/200s minimum</li>
+              <li>IS/VR → ។add 2-4 stop safety</li>
+              <li>Brace elbows → extra stability</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🎬</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">Shutter for Video</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Video → 180° rule = SS ២ ដង fps ។ 24fps → 1/50s ។ 60fps → 1/120s ។ ND filter ចំ bright day ។</p>
+            <ul class="slide-tips">
+              <li>24fps → 1/50s shutter</li>
+              <li>60fps → 1/120s shutter</li>
+              <li>ND 3-stop filter ប្រើ bright</li>
+              <li>Motion blur → cinematic feel</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">⏱️</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Bulb Mode (Long Exposure)</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Bulb mode = SS hold ដោយ remote ។ ប្រើ fireworks, light painting, star trails ។ ក្រៅពី 30s limit ។</p>
+            <ul class="slide-tips">
+              <li>Fireworks → 2-4s ទំនង</li>
+              <li>Light painting → 5-30s</li>
+              <li>Star trails → 30min+ stacked</li>
+              <li>ចៀស vibration ។ remote release</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព Shutter Speed / RUN</div>
+        <div class="image-zone-sub">Freeze · Motion Blur · Panning · Speed — Folder: RUN</div>
+        <div class="img-gallery">
+          <img src="SS/IMG_0347 (3).JPG" alt="SS 1">
+          <img src="SS/IMG_0380 (2).JPG" alt="SS 2">
+          <img src="SS/IMG_0408 (2).JPG" alt="SS 4">
+          <img src="SS/IMG_0410 (3).JPG" alt="SS 5">
+          <img src="SS/IMG_0385 (2).JPG" alt="SS 3">
+
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 10 ========== -->
+    <section class="chapter ch-10" id="ch10">
+      <div class="chapter-header">
+        <div class="chapter-num">10</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">White Balance · Color Temperature · Sunset</span>
+          <h2 class="chapter-title">ការប្រើប្រាស់ WB (White Balance) ថតរូប Sunset</h2>
+          <p class="chapter-slides-count">5 Slides · WB ប៉ះពាល់ Mood & Color</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌡️</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">White Balance ជាអ្វី?</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>WB = adjust color cast ដើម្បី white ហ្នឹង​ white ។ Kelvin temperature: cool (blue) → warm (orange/red) ។
+            </p>
+            <ul class="slide-tips">
+              <li>2000-4000K → cool, tungsten</li>
+              <li>5000-6000K → daylight, neutral</li>
+              <li>7000-9000K → warm, cloudy</li>
+              <li>AWB → auto (safe, adjust later)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌆</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">WB ថតរូប Sunset</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Sunset WB: ប្រើ "Cloudy" (7000K+) ដើម្បី enhance warm tones ។ Auto WB cool sunset ។ Manual better ។</p>
+            <ul class="slide-tips">
+              <li>Cloudy WB → golden warm tones</li>
+              <li>Shade WB → even warmer 7500K</li>
+              <li>AWB → often de-saturate sunset</li>
+              <li>Custom 6000-8000K → manual control</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">💻</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">WB ក្នុង Post (RAW)</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>RAW → WB adjust non-destructive ។ ប្រើ Lightroom Temperature slider ។ Shoot RAW ។ ១ change later ។</p>
+            <ul class="slide-tips">
+              <li>LR → Basic → Temp & Tint</li>
+              <li>Cool → pull slider left (blue)</li>
+              <li>Warm → pull slider right (yellow)</li>
+              <li>Match WB across multiple shots</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">📊</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">WB Presets Compare</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Camera WB presets ។ Daylight/Auto ។ Tungsten (incandescent) ។ Fluorescent ។ Flash ។ ជ្រើស match source ។
+            </p>
+            <ul class="slide-tips">
+              <li>Daylight 5500K → outdoor sun</li>
+              <li>Tungsten 3200K → indoor bulb</li>
+              <li>Flash 5500K → strobe light</li>
+              <li>Gray Card → custom accurate WB</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🎨</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Creative WB</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>WB ជា creative tool ។ Cool WB → moody cinematic ។ Warm WB → cozy, romantic ។ Intentionally "wrong" =
+              style ។</p>
+            <ul class="slide-tips">
+              <li>Cool / blue tone → sad, dramatic</li>
+              <li>Warm / orange tone → nostalgic</li>
+              <li>Split toning → dual color grade</li>
+              <li>WB + LUT → cinematic look</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព White Balance</div>
+        <div class="image-zone-sub">AWB Sunset · Cloudy WB · Custom K · Presets Compare · Creative WB — Folder:
+          White_Balance</div>
+        <div class="img-gallery">
+          <img src="White_Balance/20260319_173356.jpg" alt="White Balance 1">
+          <div class="img-row img-row-2">
+            <img src="White_Balance/IMG_0116.JPG" alt="White Balance 2">
+            <img src="White_Balance/IMG_0164.JPG" alt="White Balance 3">
+          </div>
+          <div class="img-row img-row-2">
+            <img src="White_Balance/IMG_0167.JPG" alt="White Balance 4">
+            <img src="White_Balance/IMG_9978.JPG" alt="White Balance 5">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ========== CHAPTER 11 ========== -->
+    <section class="chapter ch-11" id="ch11">
+      <div class="chapter-header">
+        <div class="chapter-num">11</div>
+        <div class="chapter-meta">
+          <span class="chapter-tag">Light · Focus · Depth · Plane</span>
+          <h2 class="chapter-title">ការថតរូបដោយប្រើប្រាស់ពន្លឺ (Focus & ការគ្រប់គ្រងពន្លឺ)</h2>
+          <p class="chapter-slides-count">5 Slides · Foreground · Middle · Background · Depth of Field</p>
+        </div>
+      </div>
+      <div class="slides-grid">
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌱</div>
+            <div>
+              <div class="slide-num">SLIDE 01</div>
+              <div class="slide-name">Foreground, Middle, Background</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p> រូបភាពល្អ = 3 layers ។ Foreground (ដំបូង) → Middle (subject) → Background (ក្រោយ) ។ ជំរៅ & dimension ។
+            </p>
+            <ul class="slide-tips">
+              <li>Foreground → depth, context</li>
+              <li>Middle ground → main subject</li>
+              <li>Background → mood, setting</li>
+              <li>3 layers = professional depth</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🔵</div>
+            <div>
+              <div class="slide-num">SLIDE 02</div>
+              <div class="slide-name">ច្បាស់ទាំងអស់ (Deep DOF)</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Deep DOF → ទាំង Foreground, Middle, Background ច្បាស់ ។ ប្រើ f/8-f/16, wide lens, focus ⅓ ចូល ។</p>
+            <ul class="slide-tips">
+              <li>f/8 – f/16 → all sharp</li>
+              <li>Wide angle lens → more DOF</li>
+              <li>Hyperfocal distance → maximize</li>
+              <li>Landscape, architecture prefer</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🌸</div>
+            <div>
+              <div class="slide-num">SLIDE 03</div>
+              <div class="slide-name">ព្រាលទាំងអស់ (Shallow DOF)</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Shallow DOF → subject ច្បាស់ BG blur ។ ប្រើ f/1.4-f/2.8, telephoto, subject ឆ្ងាយ ពី BG ។</p>
+            <ul class="slide-tips">
+              <li>f/1.4 – f/2.8 → extreme blur</li>
+              <li>Telephoto → more compression blur</li>
+              <li>Subject ឆ្ងាយ BG → more blur</li>
+              <li>Portrait, food, product → love</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">💡</div>
+            <div>
+              <div class="slide-num">SLIDE 04</div>
+              <div class="slide-name">ការគ្រប់គ្រងពន្លឺ</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Exposure Triangle = ISO + Aperture + Shutter ។ Balance ទាំងបី ។ Histogram = ប្រើ​ monitor exposure ។</p>
+            <ul class="slide-tips">
+              <li>Histogram → expose correctly</li>
+              <li>ETTR → expose to the right</li>
+              <li>Spot metering → tough light</li>
+              <li>Exposure Comp (+/-) → fine tune</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-card">
+          <div class="slide-header">
+            <div class="slide-icon">🎯</div>
+            <div>
+              <div class="slide-num">SLIDE 05</div>
+              <div class="slide-name">Focus Techniques</div>
+            </div>
+          </div>
+          <div class="slide-body">
+            <p>Focus ត្រូវ ។ Eyes → focus point ។ Back Button Focus (BBF) ។ Manual focus ។ Focus peaking ។</p>
+            <ul class="slide-tips">
+              <li>Always focus on the eyes (portrait)</li>
+              <li>Back button focus (BBF) control</li>
+              <li>Manual focus + focus peaking</li>
+              <li>Live view magnify → precision</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Special extended zone for ch11 -->
+      <div class="image-zone">
+        <div class="image-zone-title">📷 រូបភាព Focus & ពន្លឺ</div>
+        <div class="image-zone-sub">Foreground · Middle · Background · Depth of Field — Folder: Light</div>
+        <div class="img-gallery">
+          <img src="Light/blue all.jpg" alt="Light 1 - All Focus">
+          <img src="FOCUS/IMG_1397.jpg" alt="Light 1 - All Focus">
+          <img src="FOCUS/IMG_1398.jpg" alt="Light 1 - All Focus">
+          <div class="img-row img-row-2">
+            <img src="Light/focus front.jpg" alt="Light 2 - Focus Front">
+            <img src="Light/focus mid.jpg" alt="Light 3 - Focus Mid">
+          </div>
+        </div>
+      </div>
+
+      <!-- Extra planes diagram -->
+      <div
+        style="margin-top: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px;">
+        <div style="font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 20px; text-align: center;">
+          ការប្រៀបធៀប Foreground · Middle · Background & Focus</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+          <div
+            style="text-align: center; padding: 16px; background: rgba(126,200,160,0.08); border-radius: 12px; border: 1px solid rgba(126,200,160,0.15);">
+            <div style="font-size: 24px; margin-bottom: 8px;">🌱</div>
+            <div style="font-size: 12px; font-weight: 700; color: #7ec8a0; margin-bottom: 4px;">FOREGROUND</div>
+            <div style="font-size: 11px; color: var(--muted); line-height: 1.6;">ដំបូងគេ ប្()<br>Depth &
+              Context<br>ច្បាស់ ឬ ព្រាល</div>
+          </div>
+          <div
+            style="text-align: center; padding: 16px; background: rgba(245,166,35,0.08); border-radius: 12px; border: 1px solid rgba(245,166,35,0.15);">
+            <div style="font-size: 24px; margin-bottom: 8px;">🎯</div>
+            <div style="font-size: 12px; font-weight: 700; color: #f5a623; margin-bottom: 4px;">MIDDLE GROUND</div>
+            <div style="font-size: 11px; color: var(--muted); line-height: 1.6;">Subject ចម្បង<br>Focus ត្រូវ
+              Sharp<br>Story Center</div>
+          </div>
+          <div
+            style="text-align: center; padding: 16px; background: rgba(92,158,224,0.08); border-radius: 12px; border: 1px solid rgba(92,158,224,0.15);">
+            <div style="font-size: 24px; margin-bottom: 8px;">🌄</div>
+            <div style="font-size: 12px; font-weight: 700; color: #5c9ee0; margin-bottom: 4px;">BACKGROUND</div>
+            <div style="font-size: 11px; color: var(--muted); line-height: 1.6;">ក្រោយ Mood Setting<br>Support
+              Subject<br>Bokeh ឬ Sharp</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div
+      style="font-family: 'Playfair Display', serif; font-size: 20px; color: var(--accent); margin-bottom: 8px; font-weight: bold;">
+      ក្រុមលក់ទឹកត្រឡាច</div>
+    <p style="color: var(--muted); font-size: 12px;">ជំពូក 1–11 · 55 Slides · Photography Complete Guide in Khmer</p>
+  </footer>
+
+  <script>
+    // Staggered fade-in for chapters
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationDelay = '0s';
+          entry.target.style.opacity = '1';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.chapter').forEach(ch => {
+      ch.style.opacity = '0';
+      observer.observe(ch);
+    });
+
+    // Slide cards hover glow
+    document.querySelectorAll('.slide-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.boxShadow = '0 20px 60px rgba(0,0,0,0.5)';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.boxShadow = '';
+      });
+    });
+  </script>
+</body>
+
+</html>
